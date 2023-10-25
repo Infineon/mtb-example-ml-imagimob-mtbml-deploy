@@ -180,8 +180,8 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 
    To check the version of CY8CKIT-028-SENSE, locate the sticker on the bottom of the shield's box which indicates the revision.
 
-   - If the shield is Rev "**", use `SHIELD_DATA_COLLECTION=SENSE_SHIELD`.
-   - If the shield is Rev "*A", use `SHIELD_DATA_COLLECTION=SENSE_SHIELD_v2`.
+   - If the shield is Rev "**" or "*A", use `SHIELD_DATA_COLLECTION=SENSE_SHIELD`.
+   - If the shield is Rev "*B" or later, use `SHIELD_DATA_COLLECTION=SENSE_SHIELD_v2`.
 
 2. Open a terminal program and select the KitProg3 COM port. Set the serial port parameters to 8N1 and 115200 baud.
 
@@ -391,6 +391,7 @@ Document title: *CE238471* - *Machine learning: Imagimob MTBML deployment*
  Version | Description of change
  ------- | ---------------------
  1.0.0   | New code example
+ 1.0.1   | Switch from dual channel audio to single
 <br>
 
 

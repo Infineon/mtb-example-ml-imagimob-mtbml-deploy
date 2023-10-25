@@ -45,7 +45,7 @@ const cyhal_pdm_pcm_cfg_t pdm_pcm_cfg =
 {
     .sample_rate     = SAMPLE_RATE_HZ,
     .decimation_rate = DECIMATION_RATE,
-    .mode            = CYHAL_PDM_PCM_MODE_STEREO,
+    .mode            = CYHAL_PDM_PCM_MODE_LEFT,
     .word_length     = 16,  /* bits */
     .left_gain       = 0,   /* dB */
     .right_gain      = 0,   /* dB */
