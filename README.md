@@ -18,7 +18,7 @@ This example supports models from Imagimob Studio, visit [Imagimob](https://deve
 - [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.1 or later (tested with v3.1)
 - [ModusToolbox&trade; Machine Learning Pack v2.0](https://softwaretools.infineon.com/tools/com.ifx.tb.tool.modustoolboxpackmachinelearning) or later (tested with v2.0)
 - Programming language: C
-- Associated parts: [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; Pioneer Kit](https://www.infineon.com/CY8CKIT-062S2-43012) (`CY8CKIT-062S2-43012`) + [IoT Sense Expansion Kit](https://www.infineon.com/cms/en/product/evaluation-boards/cy8ckit-028-sense) 
+- Associated parts: [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; Pioneer Kit](https://www.infineon.com/CY8CKIT-062S2-43012) (`CY8CKIT-062S2-43012`) + [IoT Sense Expansion Kit](https://www.infineon.com/cms/en/product/evaluation-boards/cy8ckit-028-sense) and [AIROC&trade; CYW43439 Wi-Fi & Bluetooth&reg; combo chip](https://www.infineon.com/cms/en/product/wireless-connectivity/airoc-wi-fi-plus-bluetooth-combos/wi-fi-4-802.11n/cyw43439)
 - PSoC&trade; 6 board support package (BSP) minimum required version: 4.0.0
 
 
@@ -33,6 +33,7 @@ This example supports models from Imagimob Studio, visit [Imagimob](https://deve
 ## Supported kits (make variable 'TARGET')
 
 - [PSoC&trade; 62S2 Wi-Fi Bluetooth&reg; Pioneer Kit](https://www.infineon.com/CY8CKIT-062S2-43012) (`CY8CKIT-062S2-43012`) – Default value of `TARGET`
+- [PSoC&trade; 6 AI Evaluation Kit](https://www.infineon.com/CY8CKIT-062S2-AI) (`CY8CKIT-062S2-AI`)
 
 A shield is also required to run this code example. The following shields are supported:
 - [IoT Sense Expansion Kit](https://www.infineon.com/cms/en/product/evaluation-boards/cy8ckit-028-sense) (`CY8CKIT-028-SENSE`)
@@ -44,6 +45,8 @@ A shield is also required to run this code example. The following shields are su
 Connect the CY8CKIT-028-SENSE shield to the baseboard header compatible with Arduino.
 
 The code example also works with the CY8CKIT-028-TFT and CY8CKIT-028-EPD shields. See the [Operation](#operation) section for more information.
+
+> **Note:** For the CY8CKIT-062S2-AI, shield is not needed.
 
 ## Software setup
 
@@ -174,14 +177,19 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 
 ## Operation
 
-1. Connect the board to your PC using the provided USB cable through the KitProg3 USB connector. The example is set up to use the CY8CKIT-028-SENSE shield.
-   If using the CY8CKIT-028-TFT shield, change `SHIELD_DATA_COLLECTION=TFT_SHIELD` in the Makefile.
-   If using the CY8CKIT-028-EPD shield, change `SHIELD_DATA_COLLECTION=EPD_SHIELD` in the Makefile.
+1. Connect the board to your PC using the provided USB cable through the KitProg3 USB connector. The example is set up to use the CY8CKIT-062S2-AI.
+
+   If you are using the CY8CKIT-062S2-43012, update the `SHIELD_DATA_COLLECTION` variable corresponding to `APP_CY8CKIT-062S2-43012` in the *Makefile*.
+   
+   - if using the CY8CKIT-028-TFT shield, change to `SHIELD_DATA_COLLECTION=TFT_SHIELD` in the Makefile.
+   - if using the CY8CKIT-028-EPD shield, change to `SHIELD_DATA_COLLECTION=EPD_SHIELD` in the Makefile.
+   - if using the CY8CKIT-028-SENSE shield, selection depends on kit version:
 
    To check the version of CY8CKIT-028-SENSE, locate the sticker on the bottom of the shield's box which indicates the revision.
 
    - If the shield is Rev "**" or "*A", use `SHIELD_DATA_COLLECTION=SENSE_SHIELD`.
    - If the shield is Rev "*B" or later, use `SHIELD_DATA_COLLECTION=SENSE_SHIELD_v2`.
+
 
 2. Open a terminal program and select the KitProg3 COM port. Set the serial port parameters to 8N1 and 115200 baud.
 
@@ -227,13 +235,21 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 
    ![](images/sitting.jpg)
 
-   **Figure 3. Standing: KitProg USB facing forward, shield toward the body**
+   **Figure 3. Sitting: KitProg USB toward the body for CY8CKIT-062S2-AI, Kit opposite to the ground**
+
+   ![](images/sitting_ai-kit.jpeg)
+
+   **Figure 4. Standing: KitProg USB facing forward, shield toward the body**
 
    ![](images/standing.jpg) 
 
+   **Figure 5. Standing: KitProg USB toward the body for CY8CKIT-062S2-AI, Kit toward the body**
+
+   ![](images/standing_ai-kit.jpeg)
+
 6. The code example includes a Baby Crying detection model that utilizes the PDM/PCM and is located in the *Edge/PDM* folder. To run the model, open the Machine Learning Configurator in Eclipse or run "make ml-configurator" in the command console. When the configurator comes up, set the **Pretrained model** to "Edge/PDM/baby_cry.h5" and select "Generate Source". 
 
-   **Figure 4. ModusToolbox&trade; ML configurator**
+   **Figure 6. ModusToolbox&trade; ML configurator**
 
    ![](images/cry_ml.jpg) 
 
@@ -243,7 +259,7 @@ For more details, see the [ModusToolbox&trade; tools package user guide](https:/
 
 9. After programming, the application starts automatically. Confirm that "Machine Learning: Imagimob MTBML Deploy" displays on the UART terminal.
 
-   **Figure 5. Terminal output PDM**
+   **Figure 7. Terminal output PDM**
 
    ![](images/terminal-output-pdm.jpg)
 
@@ -392,6 +408,7 @@ Document title: *CE238471* - *Machine learning: Imagimob MTBML deployment*
  ------- | ---------------------
  1.0.0   | New code example
  1.0.1   | Switch from dual channel audio to single
+ 1.1.0   | Added Support for CY8CKIT-062S2-AI
 <br>
 
 
@@ -403,7 +420,7 @@ The Bluetooth&reg; word mark and logos are registered trademarks owned by Blueto
 
 ---------------------------------------------------------
 
-© Cypress Semiconductor Corporation, 2023. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress's patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
+© Cypress Semiconductor Corporation, 2024. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress's patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
 <br>
 TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress's published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
 <br>
